@@ -31,6 +31,11 @@ public class DynamicBeat extends JFrame {	// Jframe 라이브러리를 사용해
 		
 		introbackground = new ImageIcon(Main.class.getResource("../images/introbackground.jpg")).getImage();
 		// main클래스 위치의 기반의 이미지 인스턴스를 변수에 초기화
+		
+		Music introMusic = new Music("introMusic.mp3", true);
+		// 시작화면에서 음악이 무한반복하게 해줌. true값을 넣어줘서 직접종료시키기 전에는 계속 반복하게된다.
+		introMusic.start();
+		// 게임의 실행과 동시에 게임이 종료
 	}
 	
 	public void paint(Graphics g) {	// 프로그램이 실행되는 순간 가장 첫번째로 화면에 그려지는 약속된 메서드
