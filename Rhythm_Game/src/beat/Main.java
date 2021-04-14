@@ -1,4 +1,4 @@
-package beat1;
+package beat;
 
 public class Main {
 	

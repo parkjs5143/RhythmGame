@@ -1,4 +1,4 @@
-package beat1;
+package beat;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -8,7 +8,7 @@ import javazoom.jl.player.Player;
 
 public class Music extends Thread {	// 쓰레드 상속
 	
-	private Player player;	// 다운로드 받은 Jlayer 라이브러리
+	private Player player;	// 다운로드 받은 jl 라이브러리
 	private boolean isLoop;	// 음악을 꺼지도록 설정
 	private File file;
 	private FileInputStream fis;
@@ -28,7 +28,7 @@ public class Music extends Thread {	// 쓰레드 상속
 		}
 	}
 	
-	public int getTime() {	// 현재실행되고 있는 음악이 현재 어떤 위치에서 실해오디고 있는 지 알려줌.
+	public int getTime() {	// 현재실행되고 있는 음악이 현재 어떤 위치에서 실행되고 있는지 알려줌.
 		if(player == null)
 			return 0;
 		return player.getPosition();
