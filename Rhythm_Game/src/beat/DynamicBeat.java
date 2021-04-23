@@ -68,7 +68,7 @@ public class DynamicBeat extends JFrame { // JFrame 라이브러리를 사용해
 
 	private int mouseX, mouseY;	// 메뉴바를 드래그 할 때 위치가 변경되도록 설정하기위해 마우스 좌표 변수 설정
 	
-	// 트랙 ArrayList 객체 생성
+	// 트랙클래스를 ArrayList 객체로 생성
 	ArrayList<Track> trackList = new ArrayList<Track>();
 	private Image titleImage;
 	private Image selectedImage;
@@ -99,7 +99,7 @@ public class DynamicBeat extends JFrame { // JFrame 라이브러리를 사용해
 		introMusic.start();
 		// 게임의 실행과 동시에 게임이 종료
 		
-		// 곡들을 인덱스에 넣어줌
+		// 각 화면과 곡을 인덱스에 넣어줌
 		trackList.add(new Track("buddy_Title_Image.png","buddy_Start_Image.jpg","buddy_Game_Image.jpg",
 				"bensound-buddy.mp3","bensound-buddy.mp3"));
 		trackList.add(new Track("clearday_Title_Image.png","clearday_Start_Image.jpg","clearday_Game_Image.jpg",
@@ -354,6 +354,7 @@ public class DynamicBeat extends JFrame { // JFrame 라이브러리를 사용해
 		// 페인트함수를 다시 불러와 다시 화면에 그려줌. 프로그램이 실행되는 매 순간마다 프로그램이 종료되는 순간까지 반복됨.
 	}
 	
+	// 트랙선택시 나타낼 메서드
 	public void selectTrack(int nowSelected) {
 		if (selectedMusic != null)
 			selectedMusic.close();
@@ -379,28 +380,7 @@ public class DynamicBeat extends JFrame { // JFrame 라이브러리를 사용해
 		selectTrack(nowSelected);
 	}
 	
-	public void gameStart(int nowSelected, String difficulty) {
-		if(selectedMusic != null)
-			selectedMusic.close();
-		isMainScreen = false;
-		leftButton.setVisible(false);
-		rightButton.setVisible(false);
-		easyButton.setVisible(false);
-		hardButton.setVisible(false);
-		background = new ImageIcon(Main.class.getResource("../images/"+trackList.get(nowSelected).getGameImage())).getImage();
-		backButton.setVisible(true);
-	}
-	
-	public void backMain() {
-		isMainScreen = true;
-		leftButton.setVisible(true);
-		rightButton.setVisible(true);
-		easyButton.setVisible(true);
-		hardButton.setVisible(true);background = new ImageIcon(Main.class.getResource("../images/mainBackground.jpg")).getImage();
-		backButton.setVisible(false);
-		selectTrack(nowSelected);
-	}
-	
+	// intro 화면에서 main 화면으로 전환하는 메서드
 	public void enterMain() {
 		startButton.setVisible(false);	// start 버튼 안보이도록 설정
 		quitButton.setVisible(false);	// quit 버튼 안보이도록 설정
@@ -413,4 +393,30 @@ public class DynamicBeat extends JFrame { // JFrame 라이브러리를 사용해
 		introMusic.close();
 		selectTrack(0);
 	}
+	
+	// main 화면에서 game 화면으로 전환하는 메서드
+	public void gameStart(int nowSelected, String difficulty) {
+		if(selectedMusic != null)
+			selectedMusic.close();
+		isMainScreen = false;
+		leftButton.setVisible(false);
+		rightButton.setVisible(false);
+		easyButton.setVisible(false);
+		hardButton.setVisible(false);
+		background = new ImageIcon(Main.class.getResource("../images/"+trackList.get(nowSelected).getGameImage())).getImage();
+		backButton.setVisible(true);
+	}
+	
+	
+	// game 화면에서 main 화면으로 전환하는 메서드
+	public void backMain() {
+		isMainScreen = true;
+		leftButton.setVisible(true);
+		rightButton.setVisible(true);
+		easyButton.setVisible(true);
+		hardButton.setVisible(true);background = new ImageIcon(Main.class.getResource("../images/mainBackground.jpg")).getImage();
+		backButton.setVisible(false);
+		selectTrack(nowSelected);
+	}
+
 }
